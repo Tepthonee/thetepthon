@@ -10,7 +10,7 @@ then
     echo "Current directory Identified.."
 else
     apt install git -y
-    git clone https://github.com/rogerpq/Ultroid
-    cd Ultroid
+    git clone https://github.com/Tepthonee/tt_1
+    cd tt_1
 fi
 bash resources/startup/termux.sh
