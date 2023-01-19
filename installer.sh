@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-REPO="https://github.com/tepthon-arabic/TepthonAr.git"
-DIR="/root/tepthon-arabic"
+REPO="https://github.com/Tepthonee/tt_1.git"
+DIR="/root/Tepthonee"
 
 spinner(){
     local pid=$!
