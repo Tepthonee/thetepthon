@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-REPO="https://github.com/rogerpq/Ultroid.git"
-DIR="/root/TeamUltroid"
+REPO="https://github.com/tepthon-arabic/TepthonAr.git"
+DIR="/root/tepthon-arabic"
 
 spinner(){
     local pid=$!
@@ -36,7 +36,7 @@ clone_repo(){
             fi
             return
     fi
-    echo -e "Cloning Repthon ${BRANCH}... "
+    echo -e "Cloning tepthon ${BRANCH}... "
     git clone -b $BRANCH $REPO $DIR
 }
 
