@@ -31,14 +31,12 @@ async def amireallyalive(event):
         ANIME = f"**“{data['quote']}” - {data['character']} ({data['anime']})**"
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    jmthonevent = await edit_or_reply(event, "** ᯽︙ يتـم التـأكـد انتـظر قليلا رجاءً**")
+    jmthonevent = await edit_or_reply(event, "**᯽︙ يتـم التـأكـد انتـظر قليلا رجاءً**")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
-    EMOJI = gvarstatus("ALIVE_EMOJI") or "⿻┊‌"
-    ALIVE_TEXT = (
-        gvarstatus("ALIVE_TEXT") or "**父[ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽 𝙸𝚂 𝚆𝙾𝚁𝙺𝙸𝙽𝙶 ✓ ](t.me/Tepthon)父**"
-    )
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "‌‎⿻┊‌‎‌‎"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**父 𝚃‌𝙴𝙿𝚃𝙷𝙾𝙽‌ 𝙸𝚂 𝚆𝙾𝚁𝙺𝙸𝙽𝙶 ✓ 父 (t.me/Tepthon)**"
     JMTHON_IMG = gvarstatus("ALIVE_PIC")
     caption = jmthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
@@ -47,7 +45,7 @@ async def amireallyalive(event):
         mention=mention,
         uptime=uptime,
         telever=version.__version__,
-        repver=jmthonversion,
+        jmver=jmthonversion,
         pyver=python_version(),
         dbhealth=check_sgnirts,
         ping=ms,
@@ -73,12 +71,12 @@ async def amireallyalive(event):
 
 
 temp = """{ALIVE_TEXT}
-**‎{EMOJI}‌‎𝙽𝙰𝙼𝙴 𖠄 {mention}** ٫
-**‌‎{EMOJI}‌‎𝙿𝚈𝚃𝙷𝙾𝙽 𖠄 {pyver}** ٫
-**‌‎{EMOJI}‌‎𝚃𝙴𝙿𝚃𝙷𝙾𝙽 𖠄 {telever}** ٫
-**‌‎{EMOJI}‌‎𝚄𝙿𝚃𝙸𝙼𝙴 𖠄 {uptime}** ٫
-‌‎**{EMOJI}‌‎‌‎𝙿𝙸𝙽𝙶 𖠄 {ping}** ٫
-**𖠄 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝘂𝘀𝗲𝗿𝗯𝗼𝘁 𖠄**"""
+**{EMOJI} 𝙳𝙰𝚃𝙰𝙱𝙰𝚂𝙴 𖠄 :** `{dbhealth}`
+**{EMOJI} 𝚃𝙴𝙻𝙴𝚃𝙷𝙾𝙽 𖠄:** `{telever}`
+**{EMOJI} 𝚃𝙴𝙿𝚃𝙷𝙾𝙽 𖠄 :** `{jmver}`
+**{EMOJI} 𝙿𝚈𝚃𝙷𝙾𝙽 𖠄 :** `{pyver}`
+**{EMOJI} 𝚄𝙿𝚃𝙸𝙼𝙴 𖠄 :** `{uptime}`
+**{EMOJI} 𝙽𝙰𝙼𝙴 𖠄:** {mention}"""
 
 
 def jmthonalive_text():
@@ -101,7 +99,7 @@ async def repo(event):
     await event.delete()
 
 
-ROZ_PIC = "https://telegra.ph/file/8e6c848dc65b4ef693d0d.jpg"
+ROZ_PIC = "https://graph.org/file/958276a82dde1bdc180f4.jpg"
 RAZAN = Config.TG_BOT_USERNAME
 ROZ_T = (
     f"**⌯︙بوت تيبثون يعمل بنجاح 🤍،**\n"
