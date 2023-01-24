@@ -91,7 +91,7 @@ async def _(event):
 async def _(event):
     user = await event.get_sender()
     if user.id == 1260465030:
-        await event.reply("اهلا بك محمد مطوري\nقناة السورس:  @Tepthone")
+        await event.reply("اهلا بك محمد مطوري\nقناة السورس :  @Tepthon")
 
 
 @sbb_b.ar_cmd(
