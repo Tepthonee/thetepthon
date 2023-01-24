@@ -44,10 +44,10 @@ async def song2(event):
     tep = await edit_or_reply(event, "**- جـارِ تولـيد بن 𝚅𝙸𝚂𝙴💲...**")
     async with event.client.conversation(chat) as conv:
         try:
-            await conv.send_message("فيزا")
+            await conv.send_message("/gen 547292000038xxxx|RND|RND|RND")
         except YouBlockedUserError:
             await sbb_b(unblock("SDBB_Bot"))
-            await conv.send_message("فيزا")
+            await conv.send_message("/gen 547292000038xxxx|RND|RND|RND")
         await asyncio.sleep(2)
         response = await conv.get_response()
         if response.text.startswith("البطاقه ⇽"):
