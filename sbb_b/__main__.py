@@ -60,7 +60,7 @@ async def start_jmthon():
         total = CLIENTR
         await load_plugins("plugins")
         await load_plugins("assistant")
-        LOGS.info(f"تم انتهاء عملية التنصيب بنجاح على موجينس ✓")
+        LOGS.info(f"تم انتهاء عملية التنصيب بنجاح ✓")
         LOGS.info(
             f"لمعرفة اوامر السورس ارسل {cmdhr}الاوامر\
         \nمجموعة قناة السورس  https://t.me/Tepthon_Help"
