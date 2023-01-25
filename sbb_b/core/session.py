@@ -7,7 +7,7 @@ from .bothseesion import bothseesion
 from .client import JmthonClient
 from .logger import logging
 
-LOGS = logging.getLogger("سورس جمثون")
+LOGS = logging.getLogger("سورس تيبثون")
 __version__ = "2.10.6"
 
 loop = None
@@ -15,7 +15,7 @@ loop = None
 if Config.STRING_SESSION:
     session = bothseesion(Config.STRING_SESSION, LOGS)
 else:
-    session = "jmthon"
+    session = "tepthon"
 
 try:
     sbb_b = JmthonClient(
