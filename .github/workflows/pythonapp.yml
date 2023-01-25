@@ -1,4 +1,4 @@
-name: jmthonChecker
+name: TepthonChecker
 
 on: [push, pull_request]
 
