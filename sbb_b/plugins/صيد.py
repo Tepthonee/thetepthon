@@ -192,25 +192,25 @@ def gen_user(choice):
             pass
     return username
 
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.تشيكر"))
+@sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.تشيكر"))
 async def _(event):
     if ispay2[0] == "yes":
         await event.edit(tele_checker)
         
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.اليوزرات المبندة"))
+@sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.اليوزرات المبندة"))
 async def _(event):
     if ispay2[0] == "yes":
         await sbb_b.send_file(event.chat_id, 'banned.txt')
 
 
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.الانواع"))
+@sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.الانواع"))
 async def _(event):
     if ispay2[0] == "yes":
         await event.edit(tele_checker2)
 # صيد عدد نوع قناة
 
 
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
+@sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
 async def _(event):
     if ispay2[0] == "yes":
         isclaim.clear()
@@ -221,7 +221,7 @@ async def _(event):
         trys = 0
         await event.edit(f"حسناً سأفحص نوع `{choice}` من اليوزرات على `{ch}` , بعدد `{msg[0]}` من المحاولات !")
 
-        @sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.حالة الصيد"))
+        @sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.حالة الصيد"))
         async def _(event):
             if ispay2[0] == "yes":
                 if "on" in isclaim:
@@ -275,7 +275,7 @@ async def _(event):
         trys = ""
         await event.client.send_message(event.chat_id, "اجاك متاح")
         
-@sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.تثبيت (.*)"))
+@sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.تثبيت (.*)"))
 async def _(event):
     if ispay2[0] == "yes":
         trys = 0
@@ -288,7 +288,7 @@ async def _(event):
             ch = str(msg[1])
             await event.edit(f"حسناً سأحاول تثبيت `{username}` على `{ch}` , بعدد `{msg[0]}` من المحاولات !")
 
-            @sbb_b.on(events.NewMessage(outgoing=True, pattern=r"\.حالة التثبيت التلقائي"))
+            @sbb_b.ar_cmd(events.NewMessage(outgoing=True, pattern=r"\.حالة التثبيت التلقائي"))
             async def _(event):
                 if "on" in isauto:
                     msg = await event.edit(f"التثبيت وصل لـ({trys}) من المحاولات")
