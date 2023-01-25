@@ -31,6 +31,6 @@ jobs:
           commit_message: 'أعداد تلقائي'
           commit_options: '--no-verify'
           repository: .
-          commit_user_name: jmthonr
-          commit_user_email: jmthonr@users.noreply.github.com
-          commit_author: jmthonr <thejmthon@users.noreply.github.com>
+          commit_user_name: Tepthonee
+          commit_user_email: Tepthonee@users.noreply.github.com
+          commit_author: jmthonr <Tepthonee@users.noreply.github.com>
