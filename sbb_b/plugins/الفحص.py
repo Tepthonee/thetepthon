@@ -37,7 +37,7 @@ async def amireallyalive(event):
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "‌‎⿻┊‌‎‌‎"
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**父 𝚃‌𝙴𝙿𝚃𝙷𝙾𝙽‌ 𝙸𝚂 𝚆𝙾𝚁𝙺𝙸𝙽𝙶 ✓ 父 (t.me/Tepthon)**"
-    tepthon_IMG = gvarstatus("ALIVE_PIC")
+    JMTHON_IMG = gvarstatus("ALIVE_PIC")
     caption = tepthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         ANIME=ANIME,
@@ -50,9 +50,9 @@ async def amireallyalive(event):
         dbhealth=check_sgnirts,
         ping=ms,
     )
-    if tepthon_IMG:
-        tepthon = list(tepthon_IMG.split())
-        PIC = random.choice(tepthon)
+    if JMTHON_IMG:
+        JMTHON = list(JMTHON_IMG.split())
+        PIC = random.choice(JMTHON)
         try:
             await event.client.send_file(
                 event.chat_id, PIC, caption=caption, reply_to=reply_to_id
@@ -79,7 +79,7 @@ temp = """{ALIVE_TEXT}
 **{EMOJI} 𝙽𝙰𝙼𝙴 𖠄:** {mention}"""
 
 
-def tepthonalive_text():
+def jmthonalive_text():
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  ✥ "
     tepthon_caption = "**سورس تيبثون يعمل بنجاح**\n"
     tepthon_caption += f"**{EMOJI} اصدار التيليثون :** `{version.__version__}\n`"
@@ -91,10 +91,10 @@ def tepthonalive_text():
 
 @sbb_b.ar_cmd(pattern="السورس$")
 async def repo(event):
-    PPF22 = Config.TG_BOT_USERNAME
+    RR7PP = Config.TG_BOT_USERNAME
     if event.reply_to_msg_id:
         await event.get_reply_message()
-    response = await sbb_b.inline_query(PPF22, "السورس")
+    response = await sbb_b.inline_query(RR7PP, "السورس")
     await response[0].click(event.chat_id)
     await event.delete()
 
