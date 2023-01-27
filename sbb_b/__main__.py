@@ -38,7 +38,7 @@ async def jmthons(session=None, client=None, session_name="Main"):
 
 
 # تأكد من تنصيب بعض الاكواد
-async def tepthonstart(total):
+async def jmthonstart(total):
     await setup_bot()
     await mybot()
     await verifyLoggerGroup()
@@ -49,7 +49,7 @@ async def tepthonstart(total):
     await saves()
 
 
-async def start_tepthon():
+async def start_jmthon():
     try:
         tbot_id = await tbot.get_me()
         Config.TG_BOT_USERNAME = f"@{tbot_id.username}"
