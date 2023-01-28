@@ -4,7 +4,7 @@ import math
 import requests
 import urllib3
 
-from jepthon import jepiq
+from sbb_b import sbb_b
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
@@ -13,7 +13,7 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-@jepiq.ar_cmd(pattern="وضع (.*)")
+@sbb_b.ar_cmd(pattern="وضع (.*)")
 async def variable(var):
     rep = await var.get_reply_message()
     vra = None
@@ -123,7 +123,7 @@ async def variable(var):
         addgvar(variable, vra)
 
 
-@jepiq.ar_cmd(pattern="محو (.*)")
+@sbb_b.ar_cmd(pattern="محو (.*)")
 async def variable(event):
     exe = event.text[5:]
     await edit_or_reply(event, "**⌔∮ جارِ حذف الفار انتظر قليلا**")
@@ -209,7 +209,7 @@ async def variable(event):
         delgvar(variable)
 
 
-@jepiq.ar_cmd(pattern="وقت(?:\s|$)([\s\S]*)")
+@sbb_b.ar_cmd(pattern="وقت(?:\s|$)([\s\S]*)")
 async def variable(event):
     exe = event.text[5:]
     iraq = "Asia/Baghdad"
@@ -267,114 +267,114 @@ async def variable(event):
         )
         addgvar(variable, Syria)
         
-@jepiq.ar_cmd(pattern="زخرفة الصورة(?:\s|$)([\s\S]*)")
+@sbb_b.ar_cmd(pattern="زخرفة الصورة(?:\s|$)([\s\S]*)")
 async def variable(event):
     input_str = event.pattern_match.group(1)
     jep = await edit_or_reply(event, "**جـاري اضـافة زخـرفـة الوقتيـه لـ حسابك ✅ . . .**")
     if input_str == "1":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/jepthon.ttf"
+        zinfo = "sbb_b/helpers/styles/sbb_b.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "2":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Starjedi.ttf"
+        zinfo = "sbb_b/helpers/styles/Starjedi.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "3":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Papernotes.ttf"
+        zinfo = "sbb_b/helpers/styles/Papernotes.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "4":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Terserah.ttf"
+        zinfo = "sbb_b/helpers/styles/Terserah.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "5":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Photography Signature.ttf"
+        zinfo = "sbb_b/helpers/styles/Photography Signature.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "6":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Austein.ttf"
+        zinfo = "sbb_b/helpers/styles/Austein.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "7":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Dream MMA.ttf"
+        zinfo = "sbb_b/helpers/styles/Dream MMA.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "8":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/EASPORTS15.ttf"
+        zinfo = "sbb_b/helpers/styles/EASPORTS15.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "9":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/KGMissKindergarten.ttf"
+        zinfo = "sbb_b/helpers/styles/KGMissKindergarten.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "10":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/212 Orion Sans PERSONAL USE.ttf"
+        zinfo = "sbb_b/helpers/styles/212 Orion Sans PERSONAL USE.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "11":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/PEPSI_pl.ttf"
+        zinfo = "sbb_b/helpers/styles/PEPSI_pl.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "12":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Paskowy.ttf"
+        zinfo = "sbb_b/helpers/styles/Paskowy.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "13":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Cream Cake.otf"
+        zinfo = "sbb_b/helpers/styles/Cream Cake.otf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         heroku_var[variable] = zinfo
     elif input_str == "14":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Hello Valentina.ttf"
+        zinfo = "sbb_b/helpers/styles/Hello Valentina.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "15":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Alien-Encounters-Regular.ttf"
+        zinfo = "sbb_b/helpers/styles/Alien-Encounters-Regular.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "16":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/Linebeam.ttf"
+        zinfo = "sbb_b/helpers/styles/Linebeam.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
     elif input_str == "17":
         variable = "DEFAULT_PIC"
-        zinfo = "jepthon/helpers/styles/EASPORTS15.ttf"
+        zinfo = "sbb_b/helpers/styles/EASPORTS15.ttf"
         await asyncio.sleep(1.5)
         await jep.edit("**⌔∮ تم بنجاح تغيير زخرفة الصورة الوقتية\n\n❃ جار اعادة تشغيل السورس انتظر من 2-5 دقائق ليتشغل مره اخرى**".format(input_str))
         addgvar(variable, zinfo)
 
-@jepiq.ar_cmd(pattern="ميوزك(?:\s|$)([\s\S]*)")
+@sbb_b.ar_cmd(pattern="ميوزك(?:\s|$)([\s\S]*)")
 async def variable(event):
     input_str = event.pattern_match.group(1)
     jep = await edit_or_reply(event, "**جـاري اضـافة فار الميوزك ✓ . . .**")
@@ -392,7 +392,7 @@ async def variable(event):
         addgvar(variable, jinfo)
 
 
-@jepiq.ar_cmd(pattern="استخدامي$")
+@sbb_b.ar_cmd(pattern="استخدامي$")
 async def dyno_usage(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(
@@ -450,7 +450,7 @@ async def dyno_usage(dyno):
     )
 
 
-@jepiq.ar_cmd(pattern="لوك$")
+@sbb_b.ar_cmd(pattern="لوك$")
 async def _(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(
