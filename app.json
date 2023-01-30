@@ -1,7 +1,7 @@
 {
-  "name": "سورس تيبثون العربي",
-  "description": "اللهم صلي وسلم وبارك على سيدنا محمد وعلى ال محمد كما صليت على إبراهيم وعلى آل إبراهيم بالعالمين انك حميدٌ مجيد",
-  "logo": "https://telegra.ph/file/b4aaca9a2ab1dbf5228da.jpg",
+  "name": "سورس تيبثون - TEPTHON USERBOT",
+  "description": "اللهم صلي وسلم وبارك على سيدنا محمد",
+  "logo": "https://telegra.ph/file/3e452cf6805d6dc732a59.jpg",
   "keywords": [
     "plugin",
     "modular",
@@ -38,6 +38,16 @@
     "TG_BOT_TOKEN": {
       "description": "هنا ضع توكن بوتك الذي صنعته",
       "value": ""
+    },
+    "HEROKU_API_KEY": {
+      "description": "هنا ضع الايبي كي الخاص بحساب هيروكو من هذا الرابط https://dashboard.heroku.com/account",
+      "value": "",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "اسم التطبيق",
+      "value": "",
+      "required": false
     },
     "TZ": {
       "description": "المنطقه الزمنيه من القارة الخاصه بك وعاصمه بلدك يجب ان يكون اول حرف كبير",
