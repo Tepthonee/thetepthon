@@ -13,7 +13,7 @@ from telethon.tl import functions
 from ..Config import Config
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import edit_delete, logging, sbb_b
+from . import edit_delete, sbb_b, logging
 
 DEFAULTUSERBIO = Config.DEFAULT_BIO or " ﴿ لا تَحزَن إِنَّ اللَّهَ مَعَنا ﴾  "
 DEFAULTUSER = gvarstatus("DEFAULT_NAME") or Config.ALIVE_NAME
@@ -22,9 +22,9 @@ CHANGE_TIME = int(gvarstatus("CHANGE_TIME")) if gvarstatus("CHANGE_TIME") else 6
 DEFAULT_PIC = gvarstatus("DEFAULT_PIC") or None
 FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 
-autopic_path = os.path.join(os.getcwd(), "sbb_B", "original_pic.png")
-digitalpic_path = os.path.join(os.getcwd(), "sbb_B", "digital_pic.png")
-autophoto_path = os.path.join(os.getcwd(), "sbb_B", "photo_pfp.png")
+autopic_path = os.path.join(os.getcwd(), "sbb_b", "original_pic.png")
+digitalpic_path = os.path.join(os.getcwd(), "sbb_b", "digital_pic.png")
+autophoto_path = os.path.join(os.getcwd(), "sbb_b", "photo_pfp.png")
 
 digitalpfp = (
     gvarstatus("DIGITAL_PIC") or "https://graph.org/file/63a826d5e5f0003e006a0.jpg"
