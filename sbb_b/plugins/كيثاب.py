@@ -1,3 +1,5 @@
+#كتابة_حمد
+#ترجمة_وتعريب_فريق_تيبثون
 import os
 from datetime import datetime
 
@@ -51,7 +53,7 @@ async def source(e):
     },
 )
 async def _(event):
-    "Get info about an GitHub User"
+    "✥ : جاري الحصول على المعلومات"
     reply_to = await reply_id(event)
     username = event.pattern_match.group(3)
     URL = f"https://api.github.com/users/{username}"
