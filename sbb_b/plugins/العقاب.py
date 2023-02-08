@@ -11,7 +11,7 @@ bot_username = '@MARKTEBOT'
 tepthon = ['yes']
 
 
-@sbb_b.on(admin_cmd(pattern="(تجميع النقاط|تجميع نقاط)"))
+@sbb_b.on(admin_cmd(pattern="(تجميع العقاب|تجميع عقاب)"))
 async def _(event):
     if tepthon[0] == "yes":
         await event.edit("**❖︙سيتم تجميع النقاط , قبل كل شي تأكد من انك قمت بالانضمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
