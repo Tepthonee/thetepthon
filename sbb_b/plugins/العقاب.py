@@ -43,7 +43,7 @@ async def _(event):
                 except:
                     bott = url.split('/')[-1]
                     await sbb_b(ImportChatInviteRequest(bott))
-                msg2 = await sbb_b.get_messages('@t06bot', limit=1)
+                msg2 = await sbb_b.get_messages('@MARKTEBOT', limit=1)
                 await msg2[0].click(text='تحقق')
                 chs += 1
                 await sbb_b.send_message("me", f"تم الاشتراك في {chs} قناة")
