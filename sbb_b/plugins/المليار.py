@@ -11,7 +11,7 @@ bot_username = '@t06bot'
 tepthon = ['yes']
 
 
-@sbb_b.on(admin_cmd(pattern="(تجميع النقاط|تجميع نقاط)"))
+@sbb_b.on(admin_cmd(pattern="(تجميع المليار|تجميع مليار)"))
 async def _(event):
     if tepthon[0] == "yes":
         await event.edit("**᯽︙سيتم تجميع النقاط , قبل كل شي تأكد من انك قمت بلانظمام الى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
