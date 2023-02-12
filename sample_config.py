@@ -163,4 +163,4 @@ class Development(Config):
     LOGGER = True
 
 
-# https:t.me/jmthon
+# https:t.me/Tepthon
