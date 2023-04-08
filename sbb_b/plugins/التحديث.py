@@ -129,7 +129,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         )
         return repo.__del__()
     razan = await event.edit(
-        "**الان يتم تنصيب تحديث جمثـون ، يرجى الانتظار حتى تنتهي العملية ، وعادة ما يستغرق التحديث من 4 إلى 5 دقائق.**"
+        "**الان يتم تنصيب تحديث تيبثون ، يرجى الانتظار حتى تنتهي العملية ، وعادة ما يستغرق التحديث من 4 إلى 5 دقائق.**"
     )
     try:
         ulist = get_collectionlist_items()
