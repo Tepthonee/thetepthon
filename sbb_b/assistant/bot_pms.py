@@ -111,7 +111,7 @@ async def bot_start(event):
                         \nيمكنك التواصل مع ي من خلال هذا البوت"
         buttons = [
             (
-                Button.url("تنصيب تـيـبثون ❤️", "https://t.meTepthon"),
+                Button.url("تنصيب تـيـبثون ❤️", "https://t.me/Tepthon"),
                 Button.url(
                     "مساعدة ❓",
                     "https://t.me/PPF22",
