@@ -32,7 +32,7 @@ async def amireallyalive(event):
         ANIME = f"**“{data['quote']}” - {data['character']} ({data['anime']})**"
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    jmthonevent = await edit_or_reply(event, "**᯽︙ يتـم التـأكـد انتـظر قليلا رجاءً**")
+    jmthonevent = await edit_or_reply(event, "**• أهلين فيك جاري الفحص انتظر قليلًا لطفًا**")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
@@ -96,7 +96,7 @@ async def repo(event):
     RR7PP = Config.TG_BOT_USERNAME
     if event.reply_to_msg_id:
         await event.get_reply_message()
-    response = await sbb_b.inline_query(PPF22, "السورس")
+    response = await sbb_b.inline_query("السورس")
     await response[0].click(event.chat_id)
     await event.delete()
 
