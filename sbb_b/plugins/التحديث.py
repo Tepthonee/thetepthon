@@ -1,4 +1,4 @@
-# updater for TepthonArabic
+# updater for Tepthon
 
 import asyncio
 import sys
@@ -29,7 +29,7 @@ async def gen_chlog(repo, diff):
 
 
 async def print_changelogs(event, ac_br, changelog):
-    changelog_str = f"𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n** ⪼ يوجـد تحـديث جديد لسورس تيـبـثون ༗.**\n\n`{changelog}`\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n 𓆰 𝙎𝙊𝙐𝙍𝘾𝞝 𝘿𝙀𝙑 - @PPF22 𓆪"
+    changelog_str = f"𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n** ⪼ يوجـد تحـديث جديد لسورس تيـبـثون ༗.**\n\n`{changelog}`\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n 𓆰 𝙎𝙊𝙐𝙍𝘾𝞝 𝘿𝙀𝙑 - @PPF22 𓆪"
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
         with open("output.txt", "w+") as file:
@@ -73,7 +73,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         if HEROKU_APP_NAME is None:
             await event.edit(
                 "`Please set up the` **HEROKU_APP_NAME** `Var`"
-                " to be able to deploy your userbot...`"
+                " to be able to deploy your sbb_b...`"
             )
             repo.__del__()
             return
@@ -98,7 +98,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         else:
             remote = repo.create_remote("heroku", heroku_git_url)
         try:
-            remote.push(refspec="HEAD:refs/heads/master", force=True)
+            remote.push(refspec="HEAD:refs/heads/Heroku", force=True)
         except Exception as error:
             await event.edit(f"{txt}\n`Here is the error log:\n{error}`")
             return repo.__del__()
@@ -122,10 +122,10 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽 - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ تم التحديث بنجاح ✅**\n ** جارٍ إعادة تشغيل بوت تيـبـثون ، انتظر 𓆰.**"
+        "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ تم التحديث بنجاح ✅**\n ** جارٍ إعادة تشغيل بوت تيـبـثون ، انتظر 𓆰.**"
     )
     # Spin a new instance of bot
-    args = [sys.executable, "-m", "userbot"]
+    args = [sys.executable, "-m", "sbb_b"]
     execle(sys.executable, *args, environ)
     return
 
@@ -137,14 +137,14 @@ async def upstream(event):
     conf = event.pattern_match.group(1).strip()
     event = await edit_or_reply(
         event,
-        "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽 - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ جاري البحث عن التحديثات  🌐.. 𓆰،**",
+        "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ جاري البحث عن التحديثات  🌐.. 𓆰،**",
     )
     off_repo = UPSTREAM_REPO
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
         return await edit_or_reply(
             event,
-            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n** ⪼ اضبط المتغيرات المطلوبة أولاً لتحديث بوت تيـبـثون 𓆰،**",
+            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n** ⪼ اضبط المتغيرات المطلوبة أولاً لتحديث بوت تيـبـثون 𓆰،**",
         )
     try:
         txt = "`عفوًا .. لا يمكن لبرنامج التحديث المتابعة بسبب "
@@ -161,16 +161,16 @@ async def upstream(event):
             return await event.edit(
                 f"`Unfortunately, the directory {error} "
                 "does not seem to be a git repository.\n"
-                "But we can fix that by force updating the userbot using "
+                "But we can fix that by force updating the sbb_b using "
                 ".update now.`"
             )
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
         force_update = True
-        repo.create_head("master", origin.refs.master)
-        repo.heads.master.set_tracking_branch(origin.refs.master)
-        repo.heads.master.checkout(True)
+        repo.create_head("Heroku", origin.refs.Heroku)
+        repo.heads.Heroku.set_tracking_branch(origin.refs.Heroku)
+        repo.heads.Heroku.checkout(True)
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
@@ -191,29 +191,29 @@ async def upstream(event):
     # Special case for deploy
     if conf == "البوت":
         await event.edit(
-            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ يتم تنصيب التحديث  انتظر 🌐 𓆰،**"
+            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ يتم تنصيب التحديث  انتظر 🌐 𓆰،**"
         )
         await deploy(event, repo, ups_rem, ac_br, txt)
         return
     if changelog == "" and not force_update:
         await event.edit(
-            "\n𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ سورس تيـبـثون محدث لأخر اصدار ༗. **"
+            "\n𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽    - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ سورس تيـبـثون محدث لأخر اصدار ༗. **"
         )
         return repo.__del__()
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n⪼ اضغط هنا **للتحديث السريع ↫ **[`{}تحديث الان`] او اضغط هنا **لتنصيب التحديث** وقد يستغرق 5 دقائق ↫ [`{}تحديث البوت`]".format(T, T)
+            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n⪼ اضغط هنا **للتحديث السريع ↫ **[`{}تحديث الان`] او اضغط هنا **لتنصيب التحديث** وقد يستغرق 5 دقائق ↫ [`{}تحديث البوت`]".format(T, T)
         )
 
     if force_update:
         await event.edit(
-            "`Force-Syncing to latest stable userbot code, please wait...`"
+            "`Force-Syncing to latest stable Tepthon code, please wait...`"
         )
     if conf == "الان":
         await event.edit(
-            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽  - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ يتم تحديث بوت تيـبـثون انتظر 🌐..𓆰،**"
+            "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ يتم تحديث بوت تيـبـثون  انتظر 🌐..𓆰،**"
         )
         await update(event, repo, ups_rem, ac_br)
     return
