@@ -7,8 +7,8 @@ from os import environ, execle, path, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None
-HEROKU_API_KEY = Config.HEROKU_API_KEY or None
+master_APP_NAME = Config.master_APP_NAME or None
+master_API_KEY = Config.master_API_KEY or None
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
 UPSTREAM_REPO = "https://github.com/Tepthonee/thetepthon"
 T = Config.COMMAND_HAND_LER
@@ -64,24 +64,24 @@ async def update_requirements():
 
 
 async def deploy(event, repo, ups_rem, ac_br, txt):
-    if HEROKU_API_KEY is not None:
-        import heroku3
+    if master_API_KEY is not None:
+        import master3
 
-        heroku = heroku3.from_key(HEROKU_API_KEY)
-        heroku_app = None
-        heroku_applications = heroku.apps()
-        if HEROKU_APP_NAME is None:
+        master = master3.from_key(master_API_KEY)
+        master_app = None
+        master_applications = master.apps()
+        if master_APP_NAME is None:
             await event.edit(
-                "`Please set up the` **HEROKU_APP_NAME** `Var`"
+                "`Please set up the` **master_APP_NAME** `Var`"
                 " to be able to deploy your sbb_b...`"
             )
             repo.__del__()
             return
-        for app in heroku_applications:
-            if app.name == HEROKU_APP_NAME:
-                heroku_app = app
+        for app in master_applications:
+            if app.name == master_APP_NAME:
+                master_app = app
                 break
-        if heroku_app is None:
+        if master_app is None:
             await event.edit(f"{txt}\n" "بيانات اعتماد هيروكو غير صالحة لتنصيب تيـبـثون")
             return repo.__del__()
         await event.edit(
@@ -89,16 +89,16 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
-        heroku_git_url = heroku_app.git_url.replace(
-            "https://", "https://api:" + HEROKU_API_KEY + "@"
+        master_git_url = master_app.git_url.replace(
+            "https://", "https://api:" + master_API_KEY + "@"
         )
-        if "heroku" in repo.remotes:
-            remote = repo.remote("heroku")
-            remote.set_url(heroku_git_url)
+        if "master" in repo.remotes:
+            remote = repo.remote("master")
+            remote.set_url(master_git_url)
         else:
-            remote = repo.create_remote("heroku", heroku_git_url)
+            remote = repo.create_remote("master", master_git_url)
         try:
-            remote.push(refspec="HEAD:refs/heads/Heroku", force=True)
+            remote.push(refspec="HEAD:refs/heads/master", force=True)
         except Exception as error:
             await event.edit(f"{txt}\n`Here is the error log:\n{error}`")
             return repo.__del__()
@@ -111,7 +111,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             return await event.delete()
         await event.edit("`Successfully deployed!\n" "Restarting, please wait...`")
     else:
-        await event.edit("`Please set up`  **HEROKU_API_KEY**  ` Var...`")
+        await event.edit("`Please set up`  **master_API_KEY**  ` Var...`")
     return
 
 
@@ -141,7 +141,7 @@ async def upstream(event):
     )
     off_repo = UPSTREAM_REPO
     force_update = False
-    if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
+    if master_API_KEY is None or master_APP_NAME is None:
         return await edit_or_reply(
             event,
             "𓆰 sᴏᴜʀᴄᴇ 𝚃𝙴𝙿𝚃𝙷𝙾𝙽   - 𝑼𝑷𝑫𝑨𝑻𝑬 𝑴𝑺𝑮 𓆪\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n** ⪼ اضبط المتغيرات المطلوبة أولاً لتحديث بوت تيـبـثون 𓆰،**",
@@ -168,9 +168,9 @@ async def upstream(event):
         origin = repo.create_remote("upstream", off_repo)
         origin.fetch()
         force_update = True
-        repo.create_head("Heroku", origin.refs.Heroku)
-        repo.heads.Heroku.set_tracking_branch(origin.refs.Heroku)
-        repo.heads.Heroku.checkout(True)
+        repo.create_head("master", origin.refs.master)
+        repo.heads.master.set_tracking_branch(origin.refs.master)
+        repo.heads.master.checkout(True)
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
