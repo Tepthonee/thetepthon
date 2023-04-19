@@ -35,7 +35,7 @@ except Exception as e:
     sys.exit()
 
 sbb_b.tgbot = tgbot = JmthonClient(
-    session="jmthonTgbot",
+    session="TepthonSessionBot",
     api_id=Config.APP_ID,
     api_hash=Config.API_HASH,
     loop=loop,
