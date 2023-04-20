@@ -1,69 +1,159 @@
+# ar-Thon
+# Copyright (C) 2023 ar-Thon . All Rights Reserved
+#
+# This file is a part of < https://github.com/ar-Thon/ZelZal/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/ar-Thon/ZelZal/blob/main/LICENSE/>.
+
+import asyncio
+from asyncio import sleep
+
+from telethon.errors import UserAdminInvalidError
+from telethon import events
+from telethon.tl.functions.channels import GetParticipantRequest
+
 from sbb_b import sbb_b
 
-GCAST_BLACKLIST = [
-    -1001118102804,
-    -1001161919602,
-]
+from ..Config import Config
+from ..core.logger import logging
+from ..core.managers import edit_delete, edit_or_reply
+from ..sql_helper.globals import gvarstatus
+from ..helpers import readable_time
+from ..helpers.utils import reply_id
+from ..utils import is_admin
+from . import BOTLOG, BOTLOG_CHATID
 
-DEVS = [
-    1260465030,
-    5534045882,
-]
+LOGS = logging.getLogger(__name__)
+
+spam_chats = []
+
+# =========================================================== #
+#                           الملـــف كتـــابـــة مـــن الصفـــر - T.me/Tepthon                           #
+# =========================================================== #
+Warn = "الأمر ليس لي ."
+Tepthon_BEST_SOURCE = "[ᯓ 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 - اذاعـة خـاص 🚹](t.me/Tepthon) .\n\n**- جـارِ الاذاعـه خـاص لـ أعضـاء الكـروب 🛗\n- الرجـاء الانتظـار .. لحظـات ⏳**"
+Tepthon_PRO_SOURCE = "[ᯓ 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 - اذاعـة زاجـل 🕊](t.me/Tepthon) .\n\n**- جـارِ الاذاعـه لـ قائمـة زاجـل 📜\n- الرجـاء الانتظـار .. لحظـات ⏳**"
+ZELZAL_PRO_DEV = "[ᯓ 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 - اذاعـة زاجـل 🕊](t.me/Tepthon) .\n⋆┄─┄─┄─┄┄─┄─┄─┄─┄┄⋆\n**⎉╎قائمـة الاذاعـه فارغـه ؟! ❌**\n**⎉╎قم باضافة يوزرات عبـر الامر**\n`.اضف زاجل` **بالـرد ع عدة يوزرات تفصل بينهم مسافات**"
+# =========================================================== #
+#                                      زلـــزال الهيبـــه - T.me/zzzzl1l                                  #
+# =========================================================== #
+#                                      تـاريـخ كتابـة الملـف - 7 ابريل/2023                                  #
+# =========================================================== #
 
 
-@sbb_b.ar_cmd(pattern="للكروبات(?: |$)(.*)")
-async def gcast(event):
-    sbb_b = event.pattern_match.group(1)
-    if sbb_b:
-        msg = sbb_b
-    elif event.is_reply:
-        msg = await event.get_reply_message()
-    else:
-        await edit_or_reply(
-            event, "**⌔∮ يجب الرد على رساله او وسائط او كتابه النص مع الامر**"
-        )
+@sbb_b.ar_cmd(pattern=f"للكل(?: |$)(.*)", groups_only=True)
+async def malath(event):
+    Tepthon = event.pattern_match.group(1)
+    if Tepthon:
+        await edit_or_reply(event, "**⎉╎بالـࢪد ؏ــلى ࢪسـالة او وسائـط**")
         return
-    roz = await edit_or_reply(event, "⌔∮ يتم الاذاعة في الخاص انتظر لحضه")
-    er = 0
-    done = 0
-    async for x in event.client.iter_dialogs():
-        if x.is_group:
-            chat = x.id
-            try:
-                if chat not in GCAST_BLACKLIST:
-                    await event.client.send_message(chat, msg)
-                    done += 1
-            except BaseException:
-                er += 1
-    await roz.edit(
-        f"**⌔∮  تم بنجاح الأذاعة الى ** `{done}` **من الدردشات ، خطأ في ارسال الى ** `{er}` **من الدردشات**"
-    )
-
-
-@sbb_b.ar_cmd(pattern="للخاص(?: |$)(.*)")
-async def gucast(event):
-    sbb_b = event.pattern_match.group(1)
-    if sbb_b:
-        msg = sbb_b
     elif event.is_reply:
-        msg = await event.get_reply_message()
+        zilzal = await event.get_reply_message()
     else:
-        await edit_or_reply(
-            event, "**⌔∮ يجب الرد على رساله او وسائط او كتابه النص مع الامر**"
-        )
+        await edit_or_reply(event, "**⎉╎بالـࢪد ؏ــلى ࢪسـالة او وسائـط**")
         return
-    roz = await edit_or_reply(event, "⌔∮ يتم الاذاعة في الخاص انتظر لحضه")
-    er = 0
-    done = 0
-    async for x in event.client.iter_dialogs():
-        if x.is_user and not x.entity.bot:
-            chat = x.id
+    chat_id = event.chat_id
+    is_admin = False
+    try:
+        await sbb_b(GetParticipantRequest(event.chat_id, event.sender_id))
+    except UserNotParticipantError:
+        pass
+    spam_chats.append(chat_id)
+    zelzal = await event.edit(Tepthon_BEST_SOURCE, link_preview=False)
+    total = 0
+    success = 0
+    async for usr in event.client.iter_participants(event.chat_id):
+        total += 1
+        if not chat_id in spam_chats:
+            break
+        username = usr.username
+        magtxt = f"@{username}"
+        if str(username) == "None":
+            idofuser = usr.id
+            magtxt = f"{idofuser}"
+        if zilzal.text:
             try:
-                if chat not in DEVS:
-                    await event.client.send_message(chat, msg)
-                    done += 1
+                await borg.send_message(magtxt, zilzal, link_preview=False)
+                success += 1
             except BaseException:
-                er += 1
-    await roz.edit(
-        f"**⌔∮  تم بنجاح الأذاعة الى ** `{done}` **من الدردشات ، خطأ في ارسال الى ** `{er}` **من الدردشات**"
-    )
+                return
+        else:
+            try:
+                await borg.send_file(
+                    magtxt,
+                    zilzal,
+                    caption=zilzal.caption,
+                    link_preview=False,
+                )
+                success += 1
+            except BaseException:
+                return
+    ZELZAL_BEST_DEV = f"[ᯓ 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 - اذاعـة خـاص 🚹](t.me/Tepthon) .\n\n**⎉╎تمت الاذاعـه لـ اعضـاء الكـروب .. بنجـاح  ✅**\n**⎉╎عـدد {success} عضـو**"
+    await zelzal.edit(ZELZAL_BEST_DEV, link_preview=False)
+    try:
+        spam_chats.remove(chat_id)
+    except:
+        pass
+
+
+@sbb_b.ar_cmd(pattern="ايقاف للكل", groups_only=True)
+async def unmalath(event):
+    if not event.chat_id in spam_chats:
+        return await event.edit("**- لاتوجـد عمليـة اذاعـه للاعضـاء هنـا لـ إيقافـها ؟!**")
+    else:
+        try:
+            spam_chats.remove(event.chat_id)
+        except:
+            pass
+        return await event.edit("**⎉╎تم إيقـاف عمليـة الاذاعـه للاعضـاء هنـا .. بنجـاح✓**")
+
+
+
+#                                       تـاريـخ كتابـة الكـود - 19 ابريل/2023                                  #
+#                                        الملف كتابتي من الصفر ومتعوب عليه                                  #
+#                                           تخمط بدون ذكر المصدر = اهينك                                     #
+@sbb_b.ar_cmd(pattern="زاجل(?: |$)(.*)")
+async def pmto(event):
+    Tepthon = event.pattern_match.group(1)
+    if Tepthon:
+        await edit_or_reply(event, "**⎉╎بالـࢪد ؏ــلى ࢪسـالة او وسائـط**")
+        return
+    zilzal = await event.get_reply_message()
+    if gvarstatus("ZAGL_ar") is None:
+        return await event.edit(ZELZAL_PRO_DEV, link_preview=False)
+    zelzal = gvarstatus("ZAGL_ar")
+    users = zelzal.split(" ")
+    zzz = await event.edit(Tepthon_PRO_SOURCE, link_preview=False)
+    total = 0
+    success = 0
+    user_entity = None
+    for user in users:
+        total += 1
+        if zilzal.text:
+            try:
+                user_entity = await sbb_b.get_entity(user)
+                if user_entity.bot or user_entity.deleted:
+                    continue
+                await sbb_b.send_message(user_entity.id, zilzal, link_preview=False)
+                success += 1
+            except UserAdminInvalidError:
+                pass
+            except Exception as e:
+                zzz.edit(f"خطأ في إرسال الرسالة إلى {user_entity.id}: {str(e)}")
+        else:
+            try:
+                await sbb_b.send_file(
+                    user_entity.id,
+                    zilzal,
+                    caption=zilzal.caption,
+                    link_preview=False,
+                )
+                success += 1
+            except UserAdminInvalidError:
+                pass
+            except Exception as e:
+                zzz.edit(f"خطأ في إرسال الرسالة إلى {user_entity.id}: {str(e)}")
+    ZELZAL_BEST_DEV = f"[ᯓ 𝗧𝗘𝗣𝗧𝗛𝗢𝗡 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 - اذاعـة زاجـل 🕊](t.me/Tepthon) .\n⋆┄─┄─┄─┄┄─┄─┄─┄─┄┄⋆\n**⎉╎تمت الاذاعـه .. بنجـاح  ✅**\n**⎉╎عـدد {success} أشخـاص**"
+    await zzz.edit(ZELZAL_BEST_DEV, link_preview=False)
+
+#ZelZal
