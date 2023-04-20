@@ -6,7 +6,7 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import sbb_b, tgbot
+from .core.session import sbb_b
 from .helpers.functions.converter import Convert
 from .helpers.functions.musictool import *
 from .helpers.utils.utils import runasync
@@ -14,17 +14,16 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "3.2.0"
 __license__ = "GNU Affero General Public License v3.0"
-__author__ = "سورس تيبثون <https://github.com/Tepthonee/tt_1>"
+__author__ = "سورس تيبثون <https://github.com/sourcesemsem/START_S>"
 __copyright__ = f" حقوق سورس تيبثون (C) 2020 - 2022  {__author__}"
 
 sbb_b.version = __version__
 sbb_b.tgbot.version = __version__
 LOGS = logging.getLogger("سورس تيبثون")
 bot = sbb_b
-tbot = tgbot
 
 StartTime = time.time()
-jmthonversion = "7.2.0"
+jmthonversion = "7.1.5"
 
 
 def close_connection(*_):
