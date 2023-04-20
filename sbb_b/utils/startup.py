@@ -6,12 +6,11 @@ import urllib.request
 from datetime import timedelta
 from pathlib import Path
 
-from telethon import Button, functions, types
+from telethon import Button, functions, types, utils
 from telethon.tl.functions.channels import JoinChannelRequest
-from telethon.utils import get_peer_id
+from telethon.errors import BotMethodInvalidError, ChannelPrivateError, ChannelsTooMuchError
 
 from sbb_b import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-
 from ..Config import Config
 from ..core.logger import logging
 from ..core.session import sbb_b
@@ -36,14 +35,31 @@ elif os.path.exists("config.py"):
 
 
 async def setup_bot():
-    sbb_b.me = await sbb_b.get_me()
-    sbb_b.uid = sbb_b.me.id
-    if Config.OWNER_ID == 0:
-        Config.OWNER_ID = get_peer_id(sbb_b.me)
-    await sbb_b.tgbot.start(bot_token=Config.TG_BOT_USERNAME)
-    sbb_b.tgbot.me = await sbb_b.tgbot.get_me()
-    bot_details = sbb_b.tgbot.me
-    Config.TG_BOT_USERNAME = f"@{bot_details.username}"
+    """
+    لاعداد السورس
+    """
+    try:
+        await sbb_b.connect()
+        config = await sbb_b(functions.help.GetConfigRequest())
+        for option in config.dc_options:
+            if option.ip_address == sbb_b.session.server_address:
+                if sbb_b.session.dc_id != option.id:
+                    LOGS.warning(
+                        f"اصلاح الداتا {sbb_b.session.dc_id}" f" إلى {option.id}"
+                    )
+                sbb_b.session.set_dc(option.id, option.ip_address, option.port)
+                sbb_b.session.save()
+                break
+        bot_details = await sbb_b.tgbot.get_me()
+        Config.TG_BOT_USERNAME = f"@{bot_details.username}"
+        # await sbb_b.start(bot_token=Config.TG_BOT_USERNAME)
+        sbb_b.me = await sbb_b.get_me()
+        sbb_b.uid = sbb_b.tgbot.uid = utils.get_peer_id(sbb_b.me)
+        if Config.OWNER_ID == 0:
+            Config.OWNER_ID = utils.get_peer_id(sbb_b.me)
+    except Exception as e:
+        LOGS.error(f"STRING_SESSION - {e}")
+        sys.exit()
 
 
 async def saves():
@@ -55,11 +71,30 @@ async def saves():
         print(str(e))
     try:
         await sbb_b(JoinChannelRequest("@Tepthon"))
+    except BotMethodInvalidError:
+        pass
+    except ChannelsTooMuchError:
+        LOGS.info("انضم بمجموعة السورس  أولًا @Tepthon_Help")
+    except ChannelPrivateError:
+        LOGS.critical(
+            "تم حظرك من استخدام سورس تيبثون  عليك الأعتذار إلى مطور السورس @PPF22"
+        )
+    try:
+        await sbb_b(JoinChannelRequest("@Tepthone1"))
+    except BaseException:
+        pass
+    try:
+        await sbb_b(JoinChannelRequest("@Tepthon"))
+    except BaseException:
+        pass
+    try:
         await sbb_b(JoinChannelRequest("@P17_12"))
+    except BaseException:
+        pass
+    try:
         await sbb_b(JoinChannelRequest("@Tepthon_Help"))
     except BaseException:
         pass
-
 
 async def mybot():
     SBB_B_USER = sbb_b.me.first_name
@@ -68,7 +103,7 @@ async def mybot():
     f"ـ {rz_ment}"
     f"⪼ هذا هو بوت خاص بـ {rz_ment} يمكنك التواصل معه هنا"
     starkbot = await sbb_b.tgbot.get_me()
-    perf = "[ تيبثون ]"
+    perf = "[ بوت تيبثون ]"
     bot_name = starkbot.first_name
     botname = f"@{starkbot.username}"
     if bot_name.endswith("Assistant"):
@@ -94,8 +129,8 @@ async def startupmessage():
             Config.JMTHONLOGO = await sbb_b.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/f1e757035e56613a9ef92.jpg",
-                caption="**تم تشغيل سورس تيبثون بنجاح لعرض الاوامر ارسل .الاوامر**",
-                buttons=[(Button.url("كروب المساعدة", "https://t.me/Tepthon_Help"),)],
+                caption="**تم تشغيل سورس تيبثون بنجاح لعرض الاوامر أرسل .الاوامر**",
+                buttons=[(Button.url("مجموعة الدعم", "https://t.me/Tepthon_Help"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -235,10 +270,10 @@ async def verifyLoggerGroup():
         except Exception as e:
             LOGS.error("هنالك خطا ما للتعرف على فار كروب الحفظ\n" + str(e))
     else:
-        descript = "⪼ هذه هي مجموعه الحفظ الخاصه بك لا تحذفها ابدا  𓆰."
+        descript = "⪼ هذه هي مجموعه الحفظ الخاصه بك لا تحذفها أبدًا  𓆰."
         photobt = await sbb_b.upload_file(file="razan/pic/tepthon.jpeg")
         _, groupid = await create_supergroup(
-            "كروب بوت تيبثون", sbb_b, Config.TG_BOT_USERNAME, descript, photobt
+            "مجموعة إشعارات تيبثون ", sbb_b, Config.TG_BOT_USERNAME, descript, photobt
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print("تم انشاء كروب الحفظ بنجاح")
@@ -263,7 +298,7 @@ async def verifyLoggerGroup():
         descript = "❃ لا تحذف او تغادر المجموعه وظيفتها حفظ رسائل التي تأتي على الخاص"
         photobt = await sbb_b.upload_file(file="razan/pic/tepthon.jpeg")
         _, groupid = await create_supergroup(
-            "مجموعة التخزين", sbb_b, Config.TG_BOT_USERNAME, descript, photobt
+            "مجموعة تخزين تيبثون ", sbb_b, Config.TG_BOT_USERNAME, descript, photobt
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تم عمل الكروب التخزين بنجاح واضافة الفارات اليه.")
@@ -293,11 +328,11 @@ async def install_externalrepo(repo, branch, cfolder):
     await runcmd(gcmd)
     if not os.path.exists(cfolder):
         LOGS.error(
-            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا "
+            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط أولًا "
         )
         return await sbb_b.tgbot.send_message(
             BOTLOG_CHATID,
-            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط اولا ",
+            "هنالك خطأ اثناء استدعاء رابط الملفات الاضافية يجب التأكد من الرابط أولًا ",
         )
     if os.path.exists(rpath):
         await runcmd(f"pip3 install --no-cache-dir -r {rpath}")
