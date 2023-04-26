@@ -16,12 +16,12 @@ async def _(event):
     if tepthon[0] == "yes":
         await event.edit("**᯽︙سيتم تجميع النقاط , قبل كل شي تأكد من انك قمت بالانضمام إلى القنوات الاشتراك الاجباري للبوت لعدم حدوث اخطاء**")
         channel_entity = await sbb_b.get_entity(bot_username)
-        await sbb_b.send_message('@KBKBOT', '/start')
+        await sbb_b.send_message('@zmmbot', '/start')
         await asyncio.sleep(5)
-        msg0 = await sbb_b.get_messages('@KBKBOT', limit=1)
+        msg0 = await sbb_b.get_messages('@zmmbot', limit=1)
         await msg0[0].click(2)
         await asyncio.sleep(5)
-        msg1 = await sbb_b.get_messages('@KBKBOT', limit=1)
+        msg1 = await sbb_b.get_messages('@zmmbot', limit=1)
         await msg1[0].click(0)
 
         chs = 1
