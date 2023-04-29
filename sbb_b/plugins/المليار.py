@@ -7,7 +7,7 @@ import requests
 import asyncio
 from telethon import events
 c = requests.session()
-bot_username = '@KBKBOT'
+bot_username = '@zmmbot'
 tepthon = ['yes']
 
 
@@ -43,7 +43,7 @@ async def _(event):
                 except:
                     bott = url.split('/')[-1]
                     await sbb_b(ImportChatInviteRequest(bott))
-                msg2 = await sbb_b.get_messages('@KBKBOT', limit=1)
+                msg2 = await sbb_b.get_messages('@zmmbot', limit=1)
                 await msg2[0].click(text='تحقق')
                 chs += 1
                 await sbb_b.send_message("me", f"تم الاشتراك في {chs} قناة")
