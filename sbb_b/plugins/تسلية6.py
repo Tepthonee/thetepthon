@@ -1,5 +1,5 @@
 #  =============================
-#  == sbb_b - QHR_1  -  RR7PP =
+#  == PPF22 - QHR_1  -  RR7PP =
 #  =============================
 
 
@@ -53,7 +53,7 @@ async def nekobot(cat):
     info={
         "header": "modi tweet sticker with given custom text",
         "usage": "{tr}مودي <نص>",
-        "examples": "{tr}مودي جمثون الاصلي",
+        "examples": "{tr}مودي تيبثون الاصلي",
     },
 )
 async def nekobot(cat):
