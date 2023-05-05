@@ -41,7 +41,7 @@ async def _(event):
         )
     else:
         await event.edit_or_reply(
-            event, "<code>يجـب اضـافة متـغير `PING_PIC`  اولا  f<code>", "html"
+            event, "<code>يجـب إضـافة متـغير `PING_PIC`  اولا  f<code>", "html"
         )
 
 
