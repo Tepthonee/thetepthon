@@ -1,11 +1,11 @@
-FROM thejmthon/jmbot:slim-buster
+FROM Tepthonee/thetepthon:slim-buster
 
-RUN git clone https://github.com/thejmthon/jmbot.git /root/jmbot
+RUN git clone https://github.com/Tepthonee/thetepthon.git /root/sbb_b
 
-WORKDIR /root/jmbot
+WORKDIR /root/sbb_b
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENV PATH="/home/jmbot/bin:$PATH"
+ENV PATH="/home/sbb_b/bin:$PATH"
 
-CMD ["python3","-m","jmbot"]
+CMD ["python3","-m","sbb_b"]
