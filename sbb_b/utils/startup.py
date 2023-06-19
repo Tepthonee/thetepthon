@@ -58,6 +58,8 @@ async def saves():
         await sbb_b(JoinChannelRequest("@P17_12"))
         await sbb_b(JoinChannelRequest("@Tepthon_Help"))
         await sbb_b(JoinChannelRequest("@super_tepthon"))
+        await sbb_b(JoinChannelRequest("@YlSll"))
+        await sbb_b(JoinChannelRequest("@K_K_Q_L"))
     except BaseException:
         pass
 
